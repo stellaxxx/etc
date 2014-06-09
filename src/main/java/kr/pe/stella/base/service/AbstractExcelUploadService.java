@@ -61,11 +61,10 @@ public abstract class AbstractExcelUploadService {
 				T t = clazz.newInstance();
 
 				for (Field f : fields) {
-					ExcelColumn excelColumn = f.getAnnotation(ExcelColumn.class);
-					if (excelColumn == null) {
-						continue;
+					if (f.isAnnotationPresent(ExcelColumn.class)) {
+						ExcelColumn excelColumn = f.getAnnotation(ExcelColumn.class);
+						setValueByType(f, t, row.getCell(excelColumn.index()).getStringCellValue());
 					}
-					setValueByType(f, t, row.getCell(excelColumn.index()).getStringCellValue());
 				}
 
 				dataList.add(t);

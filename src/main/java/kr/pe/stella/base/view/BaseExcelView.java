@@ -26,6 +26,7 @@ import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+//import com.google.common.net.HttpHeaders;
 import com.google.common.net.HttpHeaders;
 
 /**
@@ -71,7 +72,7 @@ public class BaseExcelView extends AbstractExcelView {
 
 		for (int idx = 0; idx < dataList.size(); idx++) {
 			Object obj = dataList.get(idx);
-			HSSFRow row = sheet.createRow(idx++);
+			HSSFRow row = sheet.createRow(idx);
 			Field[] fields = obj.getClass().getDeclaredFields();
 			AccessibleObject.setAccessible(fields, true);
 
@@ -88,11 +89,11 @@ public class BaseExcelView extends AbstractExcelView {
 			ExcelColumn excelColumn = field.getAnnotation(ExcelColumn.class);
 
 			HSSFCell cell = row.createCell(excelColumn.index());
+			String cellValue = Objects.toString(field.get(obj), "");
 			if (row.getRowNum() == 0) {
-				cell.setCellValue(Objects.toString(excelColumn.header(), field.getName()));
-			} else {
-				cell.setCellValue(Objects.toString(field.get(obj), ""));
+				cellValue = Objects.toString(excelColumn.header(), field.getName());
 			}
+			cell.setCellValue(cellValue);
 		}
 	}
 

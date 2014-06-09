@@ -1,6 +1,5 @@
 package kr.pe.stella.config;
 
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import com.google.common.base.Charsets;
 
 @Configuration
 @ComponentScan(basePackages = "kr.pe.stella", useDefaultFilters = false, includeFilters = { @ComponentScan.Filter(Controller.class) })
@@ -21,17 +23,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public FilterRegistrationBean filterRegistration() {
+	public CharacterEncodingFilter characterEncodingFilter() {
+		CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		filter.setEncoding(Charsets.UTF_8.name());
+		return filter;
+	}
 
-		FilterRegistrationBean bean = new FilterRegistrationBean();
-
-		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("UTF-8");
-		characterEncodingFilter.setForceEncoding(true);
-
-		bean.setFilter(characterEncodingFilter);
-		bean.setOrder(1);
-
-		return bean;
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("index");
 	}
 }
