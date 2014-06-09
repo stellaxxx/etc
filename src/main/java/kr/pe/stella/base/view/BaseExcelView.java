@@ -31,7 +31,7 @@ import com.google.common.net.HttpHeaders;
 /**
  * 기본 엑셀 다운로드 처리 뷰. 생성자를 통해 파일명 지정 가능
  *
- * @author LOEN
+ * @author garam park
  *
  */
 public class BaseExcelView extends AbstractExcelView {
@@ -113,14 +113,14 @@ public class BaseExcelView extends AbstractExcelView {
 
 		try {
 			if (userAgent.contains("MSIE")) {
-				res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString()) + "\";");
+				res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(fileName, StandardCharsets.UTF_8.name()) + "\";");
 			} else {
 				res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1)
 						+ "\";");
 			}
 
 		} catch (UnsupportedEncodingException e) {
-			res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment); filename=\"" + fileName + "\";");
+			res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\";");
 		}
 	}
 

@@ -52,7 +52,13 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.10-FINAL</version>
+			<version>${poi.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
 		</dependency>
 
 		<!-- guav -->
@@ -75,6 +81,7 @@
 		<start-class>kr.pe.stella.Application</start-class>
 		<java.version>1.7</java.version>
 		<lombok.version>1.14.0</lombok.version>
+		<poi.version>3.10-FINAL</poi.version>
 	</properties>
 
 	<build>
