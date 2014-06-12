@@ -4,14 +4,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
+/**
+ * Spring App 구동클래스 <br>
+ * war를 만들기 편하도록 AutoConfig 만 넣음.
+ *
+ * @author garam.park
+ *
+ */
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "kr.pe.stella", includeFilters = @ComponentScan.Filter(value = Configuration.class))
-@EnableJpaRepositories(basePackages = "kr.pe.stella")
-@EnableTransactionManagement
+@ComponentScan(useDefaultFilters = false, includeFilters = @ComponentScan.Filter(Configuration.class))
 public class Application {
 
 	public static void main(String[] args) {

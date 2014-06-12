@@ -32,8 +32,7 @@ import com.google.common.net.HttpHeaders;
 /**
  * 기본 엑셀 다운로드 처리 뷰. 생성자를 통해 파일명 지정 가능
  *
- * @author garam park
- *
+ * @author garam.park
  */
 public class BaseExcelView extends AbstractExcelView {
 

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 엑셀 셀 컨트롤을 위한 어노테이션. <br>
  * 클래스 <b>"필드"</b>에만 적용 가능하다.
  *
- * @author LOEN
+ * @author garam.park
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
